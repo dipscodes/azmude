@@ -180,13 +180,13 @@ if __name__ == '__main__':
     num_processes = int(os.getenv("NUMBER_OF_PROCESSES"))
     
     scraping_starting_time = datetime.datetime.now()
-    print(f"Starting Scraping from page {start_index} to {end_index} at {
-          scraping_starting_time.strftime("%Y-%m-%d %H:%M:%S")}")
         
     with Pool(num_processes) as p:
         p.map(process_page_index, range(start_index, end_index + 1))
 
     scraping_done_time = datetime.datetime.now()
+    print(f"Starting Scraping from page {start_index} to {end_index} at {
+          scraping_starting_time.strftime("%Y-%m-%d %H:%M:%S")}")
     print(f"Completed Scraping from page {start_index} to {end_index} at {
           scraping_done_time.strftime("%Y-%m-%d %H:%M:%S")}")
 
