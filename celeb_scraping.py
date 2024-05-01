@@ -1,4 +1,5 @@
 from multiprocessing import Pool
+import datetime
 import json
 import re
 import requests
@@ -171,8 +172,13 @@ def process_page_index(index):
 
 
 if __name__ == '__main__':
-    start_index = 101
-    end_index = 500
+    scraping_starting_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    start_index = 517
+    end_index = 524
     num_processes = 8  # You can adjust this value based on your CPU cores
     with Pool(num_processes) as p:
         p.map(process_page_index, range(start_index, end_index + 1))
+    
+    print("Scraping Started: ", scraping_starting_time)
+    print("Scraping Stopped: ", datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
