@@ -1,13 +1,13 @@
-from multiprocessing import Pool
+from dotenv import load_dotenv
+import os
+
 
 def process_page_index(index):
     print("actress page index: ", index)
 
 
 if __name__ == '__main__':
-    start_index = 51
-    end_index = 60
-    num_processes = 2  # You can adjust this value based on your CPU cores
-    p = Pool(2)
-
-    p.map(process_page_index, range(start_index, end_index + 1))
+    load_dotenv()
+    start_index = os.getenv("START_INDEX")
+    end_index = os.getenv("END_INDEX")
+    print(start_index, end_index)

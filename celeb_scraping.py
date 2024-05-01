@@ -4,6 +4,8 @@ import json
 import re
 import requests
 from bs4 import BeautifulSoup
+from dotenv import load_dotenv
+import os
 
 
 def get_production_info(production):
@@ -174,11 +176,14 @@ def process_page_index(index):
 if __name__ == '__main__':
     scraping_starting_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    start_index = 517
-    end_index = 524
-    num_processes = 8  # You can adjust this value based on your CPU cores
+    load_dotenv()
+    start_index = os.getenv("START_INDEX")
+    end_index = os.getenv("END_INDEX")
+
+    num_processes = os.getenv("NUMBER_OF_PROCESSES")
     with Pool(num_processes) as p:
         p.map(process_page_index, range(start_index, end_index + 1))
     
     print("Scraping Started: ", scraping_starting_time)
     print("Scraping Stopped: ", datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    # print(start_index, end_index, num_processes)
