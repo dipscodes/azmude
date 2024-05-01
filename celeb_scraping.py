@@ -174,16 +174,20 @@ def process_page_index(index):
 
 
 if __name__ == '__main__':
-    scraping_starting_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
     load_dotenv()
-    start_index = os.getenv("START_INDEX")
-    end_index = os.getenv("END_INDEX")
-
-    num_processes = os.getenv("NUMBER_OF_PROCESSES")
+    start_index = int(os.getenv("START_INDEX"))
+    end_index = int(os.getenv("END_INDEX"))
+    num_processes = int(os.getenv("NUMBER_OF_PROCESSES"))
+    
+    scraping_starting_time = datetime.datetime.now()
+    print(f"Starting Scraping from page {start_index} to {end_index} at {
+          scraping_starting_time.strftime("%Y-%m-%d %H:%M:%S")}")
+        
     with Pool(num_processes) as p:
         p.map(process_page_index, range(start_index, end_index + 1))
-    
-    print("Scraping Started: ", scraping_starting_time)
-    print("Scraping Stopped: ", datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-    # print(start_index, end_index, num_processes)
+
+    scraping_done_time = datetime.datetime.now()
+    print(f"Completed Scraping from page {start_index} to {end_index} at {
+          scraping_done_time.strftime("%Y-%m-%d %H:%M:%S")}")
+
+    print("Elapsed Time: ", scraping_done_time - scraping_starting_time)
