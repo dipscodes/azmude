@@ -1,0 +1,18 @@
+{
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "git.postCommitCommand": "push",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.fontSize": 16,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "editor.fontFamily": "Fira Code, monospace",
+  "editor.fontLigatures": true,
+  "terminal.integrated.fontFamily": "Fira Code, monospace"
+}
